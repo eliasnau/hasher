@@ -10,6 +10,7 @@ mod hashing;
 #[clap(author)]
 #[clap(about)]
 #[clap(long_about = None)]
+#[command(name = "hasher", author, version, about)]
 struct Args {
     /// The path to the File
     #[clap(short, long)]
@@ -119,6 +120,22 @@ fn main() {
                 cmd.error(ErrorKind::Io, format!("Error creating Hashes\n\t{}", err))
                     .exit();
             }
+        }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_show_hash_success() {
+        let buffer: &[u8] = &b"test data"[..];
+        if let Ok(hash) = hashing::show_hash::<sha2::Sha512>(&buffer) {
+            assert_eq!(hash, "SHA-512: 0e1e21ecf105ec853d24d728867ad70613c21663a4693074b2a3619c1bd39d66b588c33723bb466c72424e80e3ca63c249078ab347bab9428500e7ee43059d0d");
+        // Replace "expected_hash_value" with the actual expected hash value
+        } else {
+            panic!("Expected Ok(hash) but got an error");
         }
     }
 }
