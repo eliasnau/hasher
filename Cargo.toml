@@ -4,6 +4,7 @@ authors = ["Elias Nau <eliasnau09@gmail.com>"]
 description = "A simple Tool for hashing"
 version = "0.1.0"
 edition = "2021"
+repository = "https://github.com/eliasnau/hasher"
 
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
